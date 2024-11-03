@@ -1,33 +1,12 @@
-import React, { createContext, useEffect, useState, ReactNode } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
-
-// تعریف نوع داده‌ای که از API دریافت می‌شود
-interface Item {
-  name: string;
-  product: string;
-  price: number;
-  number: number;
-}
-
-// تعریف نوع داده برای کانتکست
-interface DataContextType {
-  data: Item[];
-  loading: boolean;
-}
-
-// تعریف مقدار اولیه کانتکست
+import { DataContextType,Item, DataProviderProps } from '../types/ContextType';
 export const DataContext = createContext<DataContextType>({
   data: [],
   loading: true,
 });
 
-// تعریف نوع پراپ‌های provider
-interface DataProviderProps {
-  children: ReactNode;
-}
-
-// ایجاد Provider با استفاده از TypeScript
-const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
+export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   const [data, setData] = useState<Item[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -53,4 +32,3 @@ const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   );
 };
 
-export default DataProvider;

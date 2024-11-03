@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
-import { DataContext } from '../../../context/DataContext';
+import { ProductContext } from '../../../context/ProductContext';
 
 const Cardgrow: React.FC = () => {
-  const { data, loading } = useContext(DataContext);
+  const {dataProduct, loading} = useContext(ProductContext);
   if (loading) return <p className="text-white">Loading...</p>;
 
   return (
     <div>
       <div className="flex flex-col md:flex-row gap-3 p-3 w-full">
         <div className="w-full md:grow">
+        
           <h5 className="text-white font-bold text-2xl my-5 border-b border-gray-300 pb-3">
             Most Popular Purchases:
           </h5>
@@ -22,10 +23,10 @@ const Cardgrow: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((item, index) => (
+              {dataProduct.map((item, index) => (
                 <tr key={index} className="border-b border-gray-200 hover:bg-gray-800 hover:text-white">
                   <td className="p-4">{item.name}</td>
-                  <td className='p-4'>{item.product}</td>
+                  <td className='p-4'>{item.family}</td>
                   <td className="p-4">{item.price}</td>
                   <td className="p-4">{item.number}</td>
                 </tr>

@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import { UserProvider, useUser } from "./context/UserContext";
 import LoginPage from "./pages/login/LoginPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
-import DataProvider from "./context/DataContext";
+import {DataProvider} from "./context/DataContext";
+import { ProductProvider } from "./context/ProductContext";
 
 const PrivateRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
   const { user } = useUser();
@@ -14,19 +15,21 @@ const App: React.FC = () => {
   return (
     <UserProvider>
       <DataProvider>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <DashboardPage />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </Router>
+        <ProductProvider>
+          <Router>
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <DashboardPage />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </Router>
+        </ProductProvider>
       </DataProvider>     
     </UserProvider>
   );
