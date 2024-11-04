@@ -35,3 +35,18 @@ export interface DataProviderProps {
     data: Item[];
     loading: boolean;
   }
+  
+  export interface Buy{
+    product: string;
+    price: number;
+    number: number;
+  }
+  
+  export interface BuySomthingContextType{
+    buy: Buy[];
+    loading: boolean;
+  }
+
+  export interface BuySomthingProviderProps{
+    children: ReactNode;
+  }

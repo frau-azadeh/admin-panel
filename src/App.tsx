@@ -5,6 +5,7 @@ import LoginPage from "./pages/login/LoginPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import {DataProvider} from "./context/DataContext";
 import { ProductProvider } from "./context/ProductContext";
+import { BuySomthingProvider } from "./context/BuySomthingContext";
 
 const PrivateRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
   const { user } = useUser();
@@ -16,19 +17,21 @@ const App: React.FC = () => {
     <UserProvider>
       <DataProvider>
         <ProductProvider>
-          <Router>
-            <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route
-                path="/dashboard"
-                element={
-                  <PrivateRoute>
-                    <DashboardPage />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
-          </Router>
+          <BuySomthingProvider>
+            <Router>
+              <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <PrivateRoute>
+                      <DashboardPage />
+                    </PrivateRoute>
+                  }
+                />
+              </Routes>
+            </Router>
+          </BuySomthingProvider>        
         </ProductProvider>
       </DataProvider>     
     </UserProvider>

@@ -13,7 +13,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({children})=>{
 
     const fetchProduct = async() => {
         try{
-            const respons = await axios.get<Product[]>('https://mp49843408c184742bf9.free.beeceptor.com/data/product');
+            const respons = await axios.get<Product[]>('https://api.mockfly.dev/mocks/ef8e4ba5-5dc1-4b36-9bca-5f59afb45ebe/dataproduct');
             setDataProduct(respons.data);
         }
         catch(error){
